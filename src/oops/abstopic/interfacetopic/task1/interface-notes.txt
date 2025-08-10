@@ -1,0 +1,210 @@
+interface:-
+-----------
+
+interface(100% Abstraction):- 
+-----------------------------
+
+	publiic abstract interface A
+	{
+		// 1. Data Members----Constant Variables---[public static final]
+		int NO = 10;// public static final		
+
+
+		// 2. Member Function
+			// 1. Abstract method----[public abstract]
+			void test1();// public abstract 
+	
+			// 2. Non-Abstract method
+				// 1. static method
+				// 2. private method
+				// 3. default method
+	}
+
+
+	interface		class		interface		class
+	   |---extends		  |--extends	   |---implements	  |---[Not possible in Java]
+	interface		class		 class		 	interface
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public abstract interface A
+{
+	// 1. constant variables
+	int NO = 10;// public static final  
+
+	// 2. Mf's --absract method---[public abstract]
+
+	void test1();// public abstract
+
+	// 3. Non-Abstract---[static,default,private]
+	static void testStatic()	
+	{
+	}
+	default void testDefault()	
+	{
+	}
+	private void testPrivate()	
+	{
+	}
+}
+
+
+
+	A(I)			class 		interface	class	
+	|--implements		  |--extends	  |--extends	 |--X(Not Possible in Java)		  
+	B(C)			class		interface 	interface 
+
+		class	interface
+		A	B
+		|	|
+		---------
+		    |
+		    C(class)	
+
+class A
+{
+}
+interface B
+{
+}
+class C extends  A implements B
+{
+
+}
+--------------------------------------------------------------------------------------------
+
+
+features of interfaces in Java    along with    key points to remember   :
+***************************************************************************
+
+    âœ…    Features of Interface in Java   
+          ********************************
+	
+1.    Pure Abstraction   :
+
+   * An interface provides 100% abstraction.
+   * It contains only method declarations (till Java 7), and no method body (except static & default methods from Java 8).
+
+2.    Multiple Inheritance Support   :
+
+   * Java does not support multiple inheritance with classes, but    interfaces support multiple inheritance   .
+   * A class can implement    multiple interfaces   .
+
+3.    Method Types   :
+
+   *    Abstract methods    (without body) â€” default till Java 7.
+   *    Default methods    (with body) â€” added in Java 8.
+   *    Static methods    â€” added in Java 8.
+   *    Private methods    â€” added in Java 9 (used internally in interfaces).
+
+4.    Fields are static and final   :
+
+   * All variables in interfaces are implicitly:
+
+     * `public static final` (constants)
+   * Cannot have instance variables.
+
+5.    No Constructors   :
+
+   * Interfaces cannot be instantiated directly.
+   * No constructors allowed in interfaces.
+
+6.    Access Modifiers   :
+
+   * All methods in interfaces are    implicitly public and abstract    (before Java 8).
+   * You must implement them in the implementing class.
+
+7.    Implementation using `implements`   :
+
+   * A class implements an interface using the `implements` keyword.
+   * A class must override all abstract methods of the interface.
+
+8.    Interface to Interface Inheritance   :
+
+   * One interface can extend another interface using the `extends` keyword.
+
+---
+
+    ðŸ§     Important Points to Remember   
+
+* Interface is a blueprint of a class.
+* Cannot create an object of an interface.
+* Interfaces are used to achieve    loose coupling   .
+* If a class does not implement all methods of an interface, it must be declared    abstract   .
+* From Java 8, interfaces can have default and static methods with body.
+* A class can implement multiple interfaces but extend only one class.
+* Interfaces are used extensively in frameworks like Spring, Hibernate, etc.
+
+---
+
+    âœ�ï¸� Example:
+
+   java
+interface Animal {
+    void makeSound(); // abstract method
+    default void eat() {
+        System.out.println("Animal eats");
+    }
+    static void sleep() {
+        System.out.println("Animal sleeps");
+    }
+}
+
+class Dog implements Animal {
+    public void makeSound() {
+        System.out.println("Bark");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.makeSound(); // Bark
+        d.eat();       // Animal eats
+        Animal.sleep(); // Animal sleeps
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
