@@ -1,0 +1,53 @@
+Master these 𝘧𝘳𝘦𝘲𝘶𝘦𝘯𝘵𝘭𝘺 𝘢𝘴𝘬𝘦𝘥 𝘫𝘢𝘷𝘢 𝘲𝘶𝘦𝘴𝘵𝘪𝘰𝘯𝘴 before your next interview.
+
+🔸 What’s the difference between JDK, JRE, and JVM?
+🔸 Why is Java considered platform-independent?
+🔸 Difference between an abstract class and an interface?
+🔸 What’s the role of final, finally, and finalize in Java?
+🔸 Stack vs. heap memory, what’s the difference?
+🔸 Method overloading vs. method overriding?
+🔸 Difference between private and protected access modifiers?
+🔸 What’s constructor overloading in Java?
+🔸 Purpose of the super keyword in Java?
+🔸 What’s the purpose of static blocks in Java?
+🔸 What is the use of the this keyword in constructors?
+🔸 What are the Object-Oriented features supported by Java?
+🔸 Access specifiers in Java, what are the differences?
+🔸 Difference between composition and inheritance?
+🔸 What is the purpose of an abstract class?
+🔸 Difference between a constructor and a method in Java?
+🔸 Explain the diamond problem in Java and its solution.
+🔸 Local vs. instance variables, what’s the difference?
+🔸 What is a Marker interface in Java?
+🔸 How does Java achieve polymorphism?
+🔸 Explain encapsulation with a real-life example.
+🔸 Why are Strings immutable in Java?
+🔸 Difference between creating Strings using new() vs. literals?
+🔸 What is the Collections framework?
+🔸 ArrayList vs. LinkedList, key differences?
+🔸 HashMap vs. TreeMap, when to use each?
+🔸 HashSet vs. TreeSet, what’s the difference?
+🔸 Iterator vs. ListIterator, how do they differ?
+🔸 What’s the role of the Comparable interface?
+🔸 What’s the difference between Collections and Collection?
+🔸 Why use the java.util.concurrent package?
+🔸 What is an exception in Java?
+🔸 How does exception propagation work?
+🔸 Checked vs. unchecked exceptions, what’s the difference?
+🔸 Purpose of a try-catch block in Java?
+🔸 Difference between throw and throws?
+🔸 Why use a finally block?
+🔸 What’s the base class of all exception classes?
+🔸 How is a custom exception created in Java?
+🔸 What happens if an exception is not caught?
+🔸 How do you rethrow exceptions in Java?
+🔸 What is a thread, and what are the stages of its lifecycle?
+🔸 Difference between a process and a thread?
+🔸 Types of thread priorities in Java?
+🔸 What is context switching in threads?
+🔸 User threads vs. daemon threads, how do they differ?
+🔸 Purpose of synchronization in Java?
+🔸 What is a deadlock? How can it be avoided?
+🔸 Use of wait() and notify() methods in threads?
+🔸 Synchronized vs. volatile in Java?
+🔸 Difference between notify() and notifyAll()?

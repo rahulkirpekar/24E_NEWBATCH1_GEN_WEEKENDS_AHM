@@ -1,0 +1,81 @@
+
+       Features of Abstract Class in Java   
+	   **************************************
+	   	
+1.    Cannot Be Instantiated   
+
+       You    cannot create an object    of an abstract class directly.
+       Example: `AbstractClass obj = new AbstractClass();// Compile-time error
+
+2.    Can Contain Abstract and Non-Abstract Methods   
+
+       Abstract class    may have abstract methods    (without body) and    concrete methods    (with body).
+
+3.    Must Be Declared with `abstract` Keyword   
+
+       Syntax:
+
+        
+     abstract class Animal {
+         abstract void sound();
+         void eat() {
+             System.out.println("eating...");
+         }
+     }
+     ```
+
+4.    Used for Inheritance   
+
+       Abstract classes are    extended    by child (sub) classes using `extends`.
+
+5.    Subclasses Must Implement Abstract Methods   
+
+       All abstract methods    must be implemented    by the first    concrete subclass   .
+       If the subclass does not implement all abstract methods, it must also be declared `abstract`.
+
+6.    Can Have Constructors   
+
+       Abstract classes can have constructors, and these are called when the subclass object is created.
+
+7.    Can Have Instance Variables and Static Methods   
+
+       It can have fields (variables) and methods (both static and non-static).
+
+8.    Can Extend Another Class and Implement Interfaces   
+
+       Abstract classes can    extend another class (abstract or concrete)    and can also    implement interfaces   .
+
+9.    Can Be Used for Partial Abstraction   
+
+       Unlike interfaces (which offer 100% abstraction), abstract classes provide    0â€“100% abstraction   .
+
+10.    Access Modifiers Allowed   
+
+        Abstract classes and their members can use access modifiers like `public`, `protected`, and `private`.
+
+---
+
+    ðŸ“Œ Example:
+
+   
+abstract class Animal {
+    abstract void sound();  // abstract method
+
+    void sleep() {          // concrete method
+        System.out.println("Sleeping...");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal obj = new Dog(); // Upcasting
+        obj.sound();    // Barks
+        obj.sleep();    // Sleeping...
+    }
+}
