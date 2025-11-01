@@ -1,0 +1,104 @@
+✅ 1. What is the difference between static and non-static in Java?
+
+| Feature      | Static                    | Non-static                   |
+| ------------ | ------------------------- | ---------------------------- |
+| Belongs to   | Class                     | Instance of class (object)   |
+| Accessed by  | Class name or object      | Object only                  |
+| Memory usage | Single copy shared by all | Each object has its own copy |
+| Example      | `static int count;`       | `int id;`                    |
+
+---------------------------------------------------------------------------------------------------------------
+
+✅ 2. Can we access static members from a non-static method?
+✔️ Yes. Static members can be accessed from non-static methods directly or using class name.
+
+class Test {
+    static int x = 10;
+    void show() {
+        System.out.println(x); // valid
+    }
+}
+---------------------------------------------------------------------------------------------------------------
+
+✅ 3. Can we access non-static members from a static method?
+❌ No, unless you create an object first.
+
+
+class Test {
+    int x = 5;
+    static void show() {
+        // System.out.println(x); // ❌ Error
+        Test obj = new Test();
+        System.out.println(obj.x); // ✔️ Valid
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------
+
+✅ 4. Can a static method be overridden?
+❌ No, static methods are not polymorphic (not overridden). They are hidden.
+
+
+class A {
+    static void display() {
+        System.out.println("A");
+    }
+}
+class B extends A {
+    static void display() {
+        System.out.println("B");
+    }
+}
+Calling A.display(); and B.display(); is method hiding, not overriding.
+---------------------------------------------------------------------------------------------------------------
+
+✅ 5. Can we use this in a static method?
+❌ No. this refers to the current object, which doesn’t exist in static context.
+
+---------------------------------------------------------------------------------------------------------------
+
+✅ 6. Can constructors be static?
+❌ No. Constructors are called when an object is created, but static belongs to class — they conflict.
+
+---------------------------------------------------------------------------------------------------------------
+
+✅ 7. When is a static block executed?
+✔️ Static block is executed once when the class is loaded.
+
+class Demo {
+    static {
+        System.out.println("Static block");
+    }
+}
+---------------------------------------------------------------------------------------------------------------
+✅ 8. Can a class be static?
+Top-level class: ❌ Cannot be static.
+
+Nested class: ✔️ Can be static.
+
+---------------------------------------------------------------------------------------------------------------
+class Outer {
+    static class Inner {
+        void msg() {
+            System.out.println("Static inner class");
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------------------
+✅ 9. Which variables can a static method access?
+✔️ Only:
+
+Static variables
+
+Local variables inside the method
+❌ Cannot access instance variables directly.
+
+---------------------------------------------------------------------------------------------------------------
+✅ 10. What happens if you call a static method using an object?
+✔️ It works, but not recommended. Compiler shows a warning.
+
+java
+Copy
+Edit
+Test t = new Test();
+t.show(); // works but use Test.show();

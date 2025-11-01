@@ -1,0 +1,101 @@
+Single Character - char
+
+String---class + Built-in Methods--[operations]
+  |
+String---Multiple Characters
+---------------------------------------------------------------------------------------------
+
+		Ways to Operateation String Type Data
+		---------------------------------------
+	1. ImmutableWay 			2. MutableWay(value Updatable in Same Object)
+	-----------------			-----------------
+	String(class)				==> StringBuilder(class) 
+						==> StringBuffer(class) 
+------------------------------------------------------------------------------------------------
+
+1. ImmutableWay(String):-
+-------------------------
+
+String--is Special class ==> Immutable Behaviour 
+--------------------------	
+	Ways to create String class Object:-
+	------------------------------------
+
+		1. By String literal way[RAM-----HEAP----->SCP(String Constant Pool)]:-
+		-----------------------------------------------------------------------
+			String name1 = "royal";
+			String name2 = "royal";
+			String name3 = "technosoft";
+			String name4 = name1;
+			String name5 = name1.concat(name3);// royaltechnosoft
+
+Object Equality:-
+------------------
+			1. referenceBased(==)		2. valudBased(.equals)
+			---------------------		-----------------------
+			SOP(name1==name2);// true	SOP(name1.equals(name2));// true
+			SOP(name1==name3);// false	SOP(name1.equals(name3));// false
+			SOP(name1==name4);// true	SOP(name1.equals(name4));// true
+			SOP(name1==name5);// false	SOP(name1.equals(name5));// false
+
+
+
+
+		2. By 'new' keyword way:-[RAM-----HEAP]
+		-----------------------------------------
+			String name1 = new String("royal");
+			String name2 = new String("technosoft");
+			String name3 = name1.concat(name2);// royaltechnosoft
+			String name4 = name1;
+
+
+String Methods:-
+---------------
+
+	1. length
+	2. charAt
+	3. startsWith
+	4. endsWith
+	5. equals
+	6. equalIgnoreCase
+	7. compareTo
+	8. contains
+	9. isBlank
+	10.isEmpty
+	11. indexof
+	12. lastIndexOf
+	13. append(StringBuilder/StringBuffer)
+	14. concat(String)
+	15. toLowerCase
+	16. toUpperCase	
+	17. trim
+	18. substring with single arg
+	19. substring with Multiple arg
+	20. replace
+	21. split
+	22. toCharArray[string convert into char array]
+	23. getBytes 
+	24. String.valueOf(10);// To convert any type value into String type.
+	25. repeat--To repeat string multiple times and return.
+	
+	Link for Practise of String 
+	https://docs.google.com/document/d/1rofXts5k_9gA6s13sgnZ8JUW_zbK4h2scYSCSOVCMpQ/edit?usp=sharing
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

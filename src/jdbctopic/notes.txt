@@ -1,0 +1,67 @@
+JDBC:- Java to Database Connectivity
+--------
+
+	jdbctopic
+	   |
+	   --bean
+	   --dao
+	   --util
+	      |--DBConnection.java	 
+	
+
+
+
+
+MYSQL
+
+1. Db credentials
+-------------------
+
+	1.URLNAME = "jdbc:mysql://localhost:3306/databaseName"
+	2.DRIVERCLASS
+	3.USERNAME
+	4.PASSWORD
+
+
+
+	
+
+
+ mysql-connector.jar	odbc.jar	 *.jar			*.jar	
+	 |		  |		   |			  |	
+     Driver.class       Driver.class    Driver.class            Driver.class
+	 |		  |		   |			  |	
+	MYSQL		Oracle		Postgress		MSSQL-Server
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

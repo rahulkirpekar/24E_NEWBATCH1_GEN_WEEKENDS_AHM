@@ -1,0 +1,43 @@
+Inheritance:-
+---------------
+
+By Class:-
+--------------
+	1. Single Inheritance
+
+		A
+		|
+		B
+	2. MultiLevel  Inheritance
+		A
+		|
+		B
+		|
+		C
+	3. Hierarchical Inheritance
+		A
+		|
+	-----------------
+	|		|
+	B		C	
+---------------------------------------------------------------------
+
+	4. Multiple Inheritance
+
+		A	B
+		|	|
+		---------
+		    |
+		    C	
+	5. Hybrid Inheritance(Multiple)		
+
+		    A
+		---------
+		|	|
+		B	C
+		|	|
+		---------
+		    |
+		    D	
+
+

@@ -1,0 +1,90 @@
+Exception:- Abnormal Scenario-->code crashed(JVM Abnormal Terminate)
+-----------
+1. ArithmeticException	
+2. ArrayIndexoutofBoundException
+3. StringIndexoutofBoundException
+4. NumberFormatException
+5. ClassCastException
+6. NullpointerException
+		A
+		|
+	 ---------------
+	|		|
+	B		C
+
+	A obj = new C();
+	
+	B objB = (B)obj;// ClasscastException	
+----------------------------------------------------------------------------------------------
+		Type of Exception
+		-----------------
+1. checked Exception		2. Un-checked Exception	
+---------------------		-------------------------
+checked--CompileTime		UnCheckeed---Runtime
+	     |					|
+	  compiler			       JVM
+
+==>FileNotFoundException	==>	
+==>ClassFoundException
+==>SQLException
+==>IOException
+----------------------------------------------------------------------------------------------
+			Hierarchy of Exception
+			-----------------------
+			
+			Throwable(c)------------------>Error
+			   |
+			Exception(c)
+			   |
+	-------------------------------------------------
+	|--checked					|--Un-checked		
+ IOException					RuntimeException	
+ SQLException						|
+						--ArithmeticException
+						--NullpointerException
+						--....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
