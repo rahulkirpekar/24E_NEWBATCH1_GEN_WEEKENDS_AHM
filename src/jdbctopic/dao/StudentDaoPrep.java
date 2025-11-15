@@ -1,6 +1,7 @@
 package jdbctopic.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,60 +11,61 @@ import java.util.Scanner;
 import jdbctopic.bean.StudentBean;
 import jdbctopic.util.DBConnection;
 
-// Statement Interface---CRUD
-public class StudentDao 
+// PreparedStatement --- optimize
+public class StudentDaoPrep 
 {
-	public int insertStudent(StudentBean sbean) 
+	public int insertStudent(StudentBean s) 
 	{
-		int rowsAffected = 0;
+		String insertQuery = "INSERT INTO student(name,std,marks) VALUES (?,?,?)";
 		
-		Statement stmt = null;
-		String insertQuery = "INSERT INTO student(name,std,marks) VALUES ('"+sbean.getName()+"',"+sbean.getStd()+","+sbean.getMarks()+")";
-		
-		System.out.println("insertQuery : " + insertQuery);
-		
-		// 1. getDBConnection
 		Connection conn = DBConnection.getConnection();
-		
-		// 2. validate connection object
-		if (conn != null)
+		PreparedStatement pstmt = null;
+		int rowsAffected = 0;
+		if (conn!=null) 
 		{
 			try 
 			{
-				// 3. create Statement object
-				stmt = conn.createStatement();
+				pstmt = conn.prepareStatement(insertQuery);
+
+				pstmt.setString(1, s.getName());
+				pstmt.setInt(2, s.getStd());
+				pstmt.setInt(3, s.getMarks());
 				
-				// 4. execute sql query by statment
-				rowsAffected = stmt.executeUpdate(insertQuery);
-				
-				
+				rowsAffected = pstmt.executeUpdate();
+			
 			} catch (SQLException e) 
 			{
 				e.printStackTrace();
 			}
 		} else 
 		{
-			System.out.println("StudentDao---insertStudent() Db not connected");
+			System.out.println("StudentDaoPrep---insertStudent()---Db not connected");
 		}
-		
 		return rowsAffected;
 	}
+	
 	public int updateStudent(StudentBean s , int id) 
 	{
-		String updateQuery = "UPDATE student SET name='"+s.getName()+"' , std="+s.getStd()+" , marks="+s.getMarks()+" WHERE id = "+id;
+		String updateQuery = "UPDATE student SET name=? , std=? , marks=? WHERE id = ?";
 		
 		System.out.println("updateQuery : " + updateQuery);
 		
 		Connection conn = DBConnection.getConnection();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		int rowsAffected = 0 ;
 		if (conn != null) 
 		{
 			try 
 			{
-				stmt = conn.createStatement();
-			
-				rowsAffected = stmt.executeUpdate(updateQuery);
+				pstmt = conn.prepareStatement(updateQuery);
+				
+				pstmt.setString(1, s.getName());
+				pstmt.setInt(2, s.getStd());
+				pstmt.setInt(3, s.getMarks());
+				
+				pstmt.setInt(4, id);
+				
+				rowsAffected = pstmt.executeUpdate();
 			
 			} catch (SQLException e) 
 			{
@@ -72,23 +74,28 @@ public class StudentDao
 			
 		} else 
 		{
-			System.out.println("StudentDao---updateStudent()---Db not connected");
+			System.out.println("StudentDaoPrep---updateStudent()---Db not connected");
 		}
 		return rowsAffected;
 	}
+	
+	
+	
 	public int deleteStudent(int id) 
 	{
-		String deleteQuery = "DELETE FROM student WHERE id = " + id;
+		String deleteQuery = "DELETE FROM student WHERE id = ?";
 		Connection conn = DBConnection.getConnection();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		int rowsAffected = 0;
 		if (conn != null) 
 		{
 			try 
 			{
-				stmt = conn.createStatement();
+				pstmt = conn.prepareStatement(deleteQuery);
 			
-				rowsAffected = stmt.executeUpdate(deleteQuery);
+				pstmt.setInt(1, id);
+				
+				rowsAffected = pstmt.executeUpdate();
 			
 			} catch (SQLException e) 
 			{
@@ -96,7 +103,7 @@ public class StudentDao
 			}
 		} else 
 		{
-			System.out.println("StudentDao---deleteStudent()----Db not connected.");
+			System.out.println("StudentDaoPrep---deleteStudent()----Db not connected.");
 		}
 		return rowsAffected;
 	}
@@ -104,7 +111,7 @@ public class StudentDao
 	{
 		String selectQuery = "SELECT * FROM student";
 		Connection conn =	DBConnection.getConnection();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StudentBean sbean = null;
 		ArrayList<StudentBean> list = new ArrayList<>();
@@ -112,8 +119,8 @@ public class StudentDao
 		{
 			try 
 			{
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(selectQuery);
+				pstmt = conn.prepareStatement(selectQuery);
+				rs = pstmt.executeQuery();
 				while(rs.next()) 
 				{
 					int id = rs.getInt(1);
@@ -131,18 +138,21 @@ public class StudentDao
 			}
 		} else 
 		{
-			System.out.println("StudentDao---getAllRecords() ---Db not connected");
+			System.out.println("StudentDaoPrep---getAllRecords() ---Db not connected");
 		}
 		return list;
 	}
+	
+	
+	
 	public static void main(String[] args) 
 	{
 		Scanner sc = new Scanner(System.in);
 		
-		StudentDao sdao = new StudentDao();
+		StudentDaoPrep studentDao = new StudentDaoPrep();
 		
 		System.out.println("-----------------------------------------------");
-		ArrayList<StudentBean> list = sdao.getAllRecords();
+		ArrayList<StudentBean> list = studentDao.getAllRecords();
 		
 		for (int i = 0; i < list.size(); i++) 
 		{
@@ -150,8 +160,24 @@ public class StudentDao
 			
 			System.out.println(sbean.getId()+" " + sbean.getName()+" " + sbean.getStd()+" " + sbean.getMarks());
 		}
-		System.out.println("-----------------------------------------------");
+		
 /*		
+//		------------DELETE Student---------------------
+		System.out.println("Enter Student Id which you want to delete : ");
+		int id = sc.nextInt();
+		
+		StudentDaoPrep studentDao = new StudentDaoPrep();
+		
+		int rowsAffected = studentDao.deleteStudent(id);
+		
+		if (rowsAffected > 0) 
+		{
+			System.out.println("Student record successfully Deleted : " + rowsAffected);
+		} else 
+		{
+			System.out.println("Student record not Deleted  : " + rowsAffected);
+		}
+
 		System.out.println("Enter Student Id which you want to Update Student record : ");
 		int id = sc.nextInt();
 		sc.nextLine();
@@ -164,7 +190,7 @@ public class StudentDao
 		
 		StudentBean sbean = new StudentBean(0, name, std, marks);
 		
-		StudentDao studentDao = new StudentDao();
+		StudentDaoPrep studentDao = new StudentDaoPrep();
 		
 		int rowsAffected = studentDao.updateStudent(sbean,id);
 		
@@ -175,25 +201,9 @@ public class StudentDao
 		{
 			System.out.println("Student record not Updated  : " + rowsAffected);
 		}
-
 		
-		------------DELETE Student---------------------
-		System.out.println("Enter Student Id which you want to delete : ");
-		int id = sc.nextInt();
 		
-		StudentDao studentDao = new StudentDao();
-		
-		int rowsAffected = studentDao.deleteStudent(id);
-		
-		if (rowsAffected > 0) 
-		{
-			System.out.println("Student record successfully Deleted : " + rowsAffected);
-		} else 
-		{
-			System.out.println("Student record not Deleted  : " + rowsAffected);
-		}
-
-		//------------INSERT Student--------------
+		--------------------INSERT STUDENT-------------------
 		System.out.println("Enter Name : ");
 		String name = sc.nextLine();
 		System.out.println("Enter Std : ");
@@ -203,7 +213,7 @@ public class StudentDao
 		
 		StudentBean sbean = new StudentBean(0, name, std, marks);
 		
-		StudentDao studentDao = new StudentDao();
+		StudentDaoPrep studentDao = new StudentDaoPrep();
 		
 		int rowsAffected = studentDao.insertStudent(sbean);
 		
